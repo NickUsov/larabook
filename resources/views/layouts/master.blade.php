@@ -12,8 +12,8 @@
 <div class="container">
     <div class="row">
         <ul class="nav nav-pills">
-            <li role="presentation" {{$page == 'main'?'class=active':''}}><a href="#">Main Page</a></li>
-            <li role="presentation" {{$page == 'main'?'class=active':''}}><a href="#">Content Control</a></li>
+            <li role="presentation" {{$page == 'main'?'class=active':''}}><a href="/">Main Page</a></li>
+            <li role="presentation" {{$page == 'topics'?'class=active':''}}><a href="{{route('topics.index')}}">Topics</a></li>
         </ul>
     </div>
 </div>

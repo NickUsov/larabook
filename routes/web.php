@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'SiteController@index');
+Route::resource('topics', 'TopicController');

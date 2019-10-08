@@ -1,0 +1,13 @@
+.content{
+    margin-top: 100px;
+}
+.btn_remove{
+    border: none;
+    background: none;
+    outline: none;
+    color: red;
+}
+.options{
+    display: flex;
+    justify-content: space-around;
+}
