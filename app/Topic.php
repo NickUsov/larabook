@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-    protected $primaryKey = 'id';
-    protected $table = 'topics';
+    // protected $primaryKey = 'id';
+    // protected $table = 'topics';
     protected $fillable = ['name'];
+    public function blocks()
+    {
+         // связь Topic and Block (Block::class, foreignKey:'topic_id', localKey:'id')
+        return $this->hasMany(Block::class);
+    }
     public static function add($name)
     {
         $topic = new static;

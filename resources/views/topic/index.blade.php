@@ -31,6 +31,10 @@
             <a href="{{route('topics.create')}}" class="btn btn-success">Create</a>
         </tfoot>
     </table>
+    <div class="col-md-6">
+   @include('errors')
+   @include('message')
+</div>
 </div>
     
 @endsection

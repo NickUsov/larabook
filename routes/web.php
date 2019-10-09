@@ -13,3 +13,4 @@
 
 Route::get('/', 'SiteController@index');
 Route::resource('topics', 'TopicController');
+Route::resource('blocks', 'BlockController');

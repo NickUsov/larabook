@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Block;
 use App\Topic;
 
-class TopicController extends Controller
+class BlockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //dd('test');
-        $topics = Topic::all();
-        return view('topic.index', ['topics'=>$topics,'page'=>'topics']);
+        return view('block.index',['blocks'=>Block::all(), 'page'=>'blocks']);
     }
 
     /**
@@ -26,8 +25,10 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('topic.create', [
-            'page'=>'topics'
+        $topics = Topic::all();
+        return view('block.create', [
+            'page'=>'blocks',
+            'topics'=>$topics,
         ]);
     }
 
@@ -39,13 +40,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request->all());
-        $this->validate($request, [
-            'name'=>'required|unique:topics',
-
-        ]);
-        $topic = Topic::add($request->all());
-        return redirect()->route('topics.index')->with('message', 'It`s Ok, my master!');
+        //
     }
 
     /**
@@ -67,8 +62,7 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        $topic = Topic::find($id);
-        return view('topic.edit')->with(['page'=>'edit','topic'=>$topic]);
+        //
     }
 
     /**
@@ -80,12 +74,7 @@ class TopicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name'=>'required|unique:topics'
-        ]);
-        $topic = Topic::find($id);
-        $topic->edit($request->all());
-        return redirect()->route('topics.index')->with('message', 'Change is Ok, my master!');
+        //
     }
 
     /**
@@ -96,7 +85,6 @@ class TopicController extends Controller
      */
     public function destroy($id)
     {
-        Topic::find($id)->delete();
-        return redirect()->route('topics.index')->with('message','Deleted');
+        //
     }
 }

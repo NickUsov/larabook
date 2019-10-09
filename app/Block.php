@@ -8,6 +8,10 @@ class Block extends Model
 {
     
     protected $fillable = ['title', 'content'];
+    public function topic()
+    {
+        return $this->hasOne(Block::class);
+    }
     public static function add($fields)
     {
         $block = new static;
