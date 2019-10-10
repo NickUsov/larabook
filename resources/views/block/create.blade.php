@@ -3,7 +3,8 @@
 <div class="col-md-6 content">
     {!!Form::open([
         'route'=>'blocks.store',
-        'method'=>'post'
+        'method'=>'post',
+        'files'=>true,
     ])!!}
     <div class="form-group">
         <label>Select Theme
@@ -26,7 +27,7 @@
     </div>
     <div class="form-group">
         <label>Image
-            <input type="file" class="form-control" name="image_path" value="{{old('name')}}">
+            <input type="file" class="form-control" name="image_path">
         </label>         
     </div>
     <button type="submit" class="btn btn-primary">Save</button>

@@ -3,14 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Block extends Model
 {
     
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'topic_id'];
     public function topic()
     {
-        return $this->hasOne(Block::class);
+        return $this->hasOne(Topic::class, 'id', 'topic_id');
     }
     public static function add($fields)
     {
@@ -26,7 +28,7 @@ class Block extends Model
         }
         else{
             Storage::delete('uploads/'.$this->image_path);
-            $image_name = str_random(10).'.'.$image->extension();
+            $image_name = Str::random(10).'.'.$image->extension();
             $image->storeAs('uploads', $image_name);
             $this->image_path = $image_name;
             $this->save();

@@ -12,20 +12,23 @@
         </thead>
         <tbody>
             @foreach($blocks as $block)
-            <tr>
+             <tr>
                 <td>{{$block->id}}</td>
-                <td>{{$block->topic->name}}</td>
+                <td>{{$block->topic->name}}</td> 
                 <td>{{$block->title}}</td>
                 <td>{{$block->content}}</td>
                 <td>
-                    <img src="{{$block->getImage()}}" alt="image" class="img-responsive">
+                    <div class="img_style">
+                        <img src="{{$block->getImage()}}" alt="image" class="img-responsive">   
+                    </div>
                 </td>
-                <td class="options"><a href="{{route('blocks.edit',$block->id)}}"><i  class="glyphicon glyphicon-pencil"></i></a>
-                {!!Form::open([
-                    'route'=>['blocks.destroy', $block->id],
-                    'method'=>'delete'
-                ])!!}
-                <button type="submit" onclick="return confirm('Ты серьезно ?')" class="glyphicon glyphicon-remove btn_remove"></button></td>
+                    <td class="options"><a href="{{route('blocks.edit',$block->id)}}"><i  class="glyphicon glyphicon-pencil"></i></a>
+                    {!!Form::open([
+                        'route'=>['blocks.destroy', $block->id],
+                        'method'=>'delete'
+                    ])!!}
+                    <button type="submit" onclick="return confirm('Ты серьезно ?')" class="glyphicon glyphicon-remove btn_remove"></button>
+                </td>
                 {!!Form::close()!!}
             </tr>  
             @endforeach
@@ -38,6 +41,5 @@
         @include('errors')
         @include('message')
     </div>
-</div>
-    
+</div> 
 @endsection

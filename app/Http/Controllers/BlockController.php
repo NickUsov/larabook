@@ -15,7 +15,9 @@ class BlockController extends Controller
      */
     public function index()
     {
-        return view('block.index',['blocks'=>Block::all(), 'page'=>'blocks']);
+        $blocks = Block::all();
+        //dd($blocks);
+        return view('block.index',['blocks'=>$blocks, 'page'=>'blocks']);
     }
 
     /**
@@ -40,7 +42,14 @@ class BlockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title'=> 'required',
+            'content'=> 'required',
+            'image_path'=> 'nullable|image',
+        ]);
+        $blocks = Block::add($request->all());
+        $blocks->uploadImage($request->file('image_path'));
+        return redirect()->route('blocks.index')->with('message', 'Block was adding successfull');
     }
 
     /**
@@ -62,7 +71,9 @@ class BlockController extends Controller
      */
     public function edit($id)
     {
-        //
+        $topics = Topic::all();
+        $block = Block::find($id);
+        return view('block.edit')->with(['page'=>'edit','block'=>$block, 'topics'=>$topics]);
     }
 
     /**
@@ -74,7 +85,15 @@ class BlockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title'=> 'required',
+            'content'=> 'required',
+            'image_path'=> 'nullable|image',
+        ]);
+        $block = Block::find($id);
+        $block->edit($request->all());
+        $block->uploadImage($request->file('image_path'));
+        return redirect()->route('blocks.index')->with('message', 'Change is Ok, my master!');
     }
 
     /**
@@ -85,6 +104,7 @@ class BlockController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Block::find($id)->remove();
+        return redirect()->route('blocks.index')->with('message','Deleted');
     }
 }

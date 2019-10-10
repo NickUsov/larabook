@@ -12,7 +12,7 @@ class Topic extends Model
     public function blocks()
     {
          // связь Topic and Block (Block::class, foreignKey:'topic_id', localKey:'id')
-        return $this->hasMany(Block::class);
+        return $this->hasMany(Block::class, 'topic_id', 'id');
     }
     public static function add($name)
     {
