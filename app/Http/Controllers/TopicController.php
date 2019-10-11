@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Topic;
+use App\Block;
 
 class TopicController extends Controller
 {
@@ -16,7 +17,7 @@ class TopicController extends Controller
     {
         //dd('test');
         $topics = Topic::all();
-        return view('topic.index', ['topics'=>$topics,'page'=>'topics']);
+        return view('topic.index', ['topics'=>$topics,'page'=>'topics', 'id'=>null]);
     }
 
     /**
@@ -27,7 +28,8 @@ class TopicController extends Controller
     public function create()
     {
         return view('topic.create', [
-            'page'=>'topics'
+            'page'=>'topics',
+            'id'=>null,
         ]);
     }
 
@@ -42,10 +44,9 @@ class TopicController extends Controller
        // dd($request->all());
         $this->validate($request, [
             'name'=>'required|unique:topics',
-
         ]);
         $topic = Topic::add($request->all());
-        return redirect()->route('topics.index')->with('message', 'It`s Ok, my master!');
+        return redirect()->route('topics.index')->with(['message'=>'It`s Ok, my master!',  'id'=>null]);
     }
 
     /**
@@ -56,7 +57,10 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        //
+        $topics = Topic::all();
+        $blocks = Block::all()->where('topic_id', $id);
+    
+        return view('topic.show')->with(['page'=>'topics/'.$id, 'id'=>$id, 'topics'=>$topics, 'blocks'=>$blocks]);
     }
 
     /**
@@ -68,7 +72,7 @@ class TopicController extends Controller
     public function edit($id)
     {
         $topic = Topic::find($id);
-        return view('topic.edit')->with(['page'=>'edit','topic'=>$topic]);
+        return view('topic.edit')->with(['page'=>'edit','topic'=>$topic,  'id'=>null]);
     }
 
     /**

@@ -17,7 +17,7 @@ class BlockController extends Controller
     {
         $blocks = Block::all();
         //dd($blocks);
-        return view('block.index',['blocks'=>$blocks, 'page'=>'blocks']);
+        return view('block.index',['blocks'=>$blocks, 'page'=>'blocks', 'id'=>null]);
     }
 
     /**
@@ -31,6 +31,7 @@ class BlockController extends Controller
         return view('block.create', [
             'page'=>'blocks',
             'topics'=>$topics,
+            'id'=>null
         ]);
     }
 
@@ -49,7 +50,7 @@ class BlockController extends Controller
         ]);
         $blocks = Block::add($request->all());
         $blocks->uploadImage($request->file('image_path'));
-        return redirect()->route('blocks.index')->with('message', 'Block was adding successfull');
+        return redirect()->route('blocks.index')->with(['message'=>'Block was adding successfull', 'id'=>null]);
     }
 
     /**
@@ -60,7 +61,7 @@ class BlockController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -73,7 +74,7 @@ class BlockController extends Controller
     {
         $topics = Topic::all();
         $block = Block::find($id);
-        return view('block.edit')->with(['page'=>'edit','block'=>$block, 'topics'=>$topics]);
+        return view('block.edit')->with(['page'=>'edit','block'=>$block, 'topics'=>$topics,'id'=>$id]);
     }
 
     /**
