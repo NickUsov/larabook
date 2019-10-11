@@ -72,7 +72,7 @@ class TopicController extends Controller
     public function edit($id)
     {
         $topic = Topic::find($id);
-        return view('topic.edit')->with(['page'=>'edit','topic'=>$topic,  'id'=>null]);
+        return view('topic.edit')->with(['page'=>'topic_edit','topic'=>$topic,  'id'=>$id]);
     }
 
     /**

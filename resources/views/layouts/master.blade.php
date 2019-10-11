@@ -13,8 +13,8 @@
     <div class="row">
         <ul class="nav nav-pills">
             <li role="presentation" {{$page == 'main'||$page == 'topics/'.$id?'class=active':''}}><a href="/">Main Page</a></li>
-            <li role="presentation" {{$page == 'topics'?'class=active':''}}><a href="{{route('topics.index')}}">Topics</a></li>
-            <li role="presentation" {{$page == 'blocks'?'class=active':''}}><a href="{{route('blocks.index')}}">Blocks</a></li>
+            <li role="presentation" {{$page == 'topics'||$page == 'topic_edit'?'class=active':''}}><a href="{{route('topics.index')}}">Topics</a></li>
+            <li role="presentation" {{$page == 'blocks'||$page == 'block_edit'?'class=active':''}}><a href="{{route('blocks.index')}}">Blocks</a></li>
         </ul>
     </div>
 </div>

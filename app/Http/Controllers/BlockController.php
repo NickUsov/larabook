@@ -74,7 +74,7 @@ class BlockController extends Controller
     {
         $topics = Topic::all();
         $block = Block::find($id);
-        return view('block.edit')->with(['page'=>'edit','block'=>$block, 'topics'=>$topics,'id'=>$id]);
+        return view('block.edit')->with(['page'=>'block_edit','block'=>$block, 'topics'=>$topics,'id'=>$id]);
     }
 
     /**
