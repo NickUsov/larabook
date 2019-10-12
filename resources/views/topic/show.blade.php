@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container">
+    <div class="container content">
         <div class="row">
             <div class="col-md-2">
-                <ul class="nav nav-pills nav-stacked">
+                <ul class="side nav nav-pills nav-stacked">
                     @foreach($topics as $topic)
                         <li role='presentation' {{$page == 'topics/'.$topic->id||($page=='main'&&$id==$topic->id)?'class=active':''}}>
                             <a href="{{route('topics.show', $topic->id)}}">{{$topic->name}}</a>
